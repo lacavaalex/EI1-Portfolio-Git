@@ -14,7 +14,11 @@ def realizar_cadastro():
     elif len(senha) < 6:
         messagebox.showwarning("Aviso", "Senha muito curta.")
     else:
-        messagebox.showinfo("Sucesso", f"Usuário {usuario} cadastrado!")
+        with open("usuarios.txt", "a") as arquivo:
+            arquivo.write(f"{email},{senha}\n")
+        
+        messagebox.showinfo("Sucesso", f"Usuário {usuario} cadastrado e salvo no sistema!")
+
         root.destroy()
         #chamada do arquivo de login
         subprocess.run([sys.executable, "tela_login.py"])
