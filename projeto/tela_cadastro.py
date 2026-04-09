@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
+import sys
+import subprocess
 
 #metodo para realizar o cadastro
 def realizar_cadastro():
@@ -8,12 +10,14 @@ def realizar_cadastro():
     senha = entry_senha.get()
     
     if "@" not in email:
-        messagebox.showerror("Erro", "E-mail inválido! Deve conter '@'.")
+        messagebox.showerror("Erro", "E-mail inválido!")
     elif len(senha) < 6:
-        messagebox.showwarning("Aviso", "A senha deve ter pelo menos 6 caracteres.")
+        messagebox.showwarning("Aviso", "Senha muito curta.")
     else:
-        messagebox.showinfo("Sucesso", f"Usuário {usuario} cadastrado com sucesso!")
+        messagebox.showinfo("Sucesso", f"Usuário {usuario} cadastrado!")
         root.destroy()
+        #chamada do arquivo de login
+        subprocess.run([sys.executable, "tela_login.py"])
 
 # configuracoes da janela
 root = tk.Tk()
