@@ -24,3 +24,15 @@ Este repositório documenta minha evolução no uso de ferramentas de controle d
 * **Versionamento:** Git & GitHub
 
 ---
+
+## 🔧 Instalação de Dependências
+
+Para executar este projeto no Linux (especificamente em distribuições baseadas no Debian), é necessário instalar o suporte ao Tkinter manualmente:
+
+1. Atualize a lista de pacotes:
+   ```bash
+   sudo apt update
+   
+2. Instale o pacote do Tkinter:
+    ```bash
+   sudo apt install python3-tk
