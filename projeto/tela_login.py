@@ -37,7 +37,7 @@ root = tk.Tk()
 root.title("Sistema de Validação - Login")
 root.geometry("800x600")
 
-tk.Label(root, text="Login", font=("Arial", 16, "bold")).pack(pady=100)
+tk.Label(root, text="Login", font=("Courier", 16, "bold")).pack(pady=100)
 
 #campos de senha e email
 tk.Label(root, text="E-mail:").pack()

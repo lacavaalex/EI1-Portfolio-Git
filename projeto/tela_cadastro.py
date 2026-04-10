@@ -28,7 +28,7 @@ root = tk.Tk()
 root.title("Sistema de Validação - Cadastro")
 root.geometry("800x600")
 
-tk.Label(root, text="Criar Nova Conta", font=("Arial", 14, "bold")).pack(pady=100)
+tk.Label(root, text="Criar Nova Conta", font=("Courier", 14, "bold")).pack(pady=100)
 
 tk.Label(root, text="Nome de Usuário:").pack()
 entry_usuario = tk.Entry(root, width=50)
