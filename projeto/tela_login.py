@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
+import sys
+import subprocess
 
 #metodo de validacao do login
 def validar_login():
@@ -26,6 +28,9 @@ def validar_login():
         
         if autenticado:
             messagebox.showinfo("Sucesso", "Login realizado com sucesso!")
+            root.destroy()
+            #chamada do arquivo de boas vindas
+            subprocess.run([sys.executable, "tela_bem_vindo.py"])
         else:
             messagebox.showerror("Erro", "E-mail ou senha incorretos.")
             
