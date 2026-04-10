@@ -3,13 +3,34 @@ from tkinter import messagebox
 
 #metodo de validacao do login
 def validar_login():
-    email = entry_email.get()
-    senha = entry_senha.get()
+    email_digitado = entry_email.get().strip()
+    senha_digitada = entry_senha.get().strip()
     
-    if "@" in email and len(senha) >= 6:
-        messagebox.showinfo("Sucesso", "Login realizado com sucesso!")
-    else:
-        messagebox.showwarning("Erro", "E-mail ou senha inválidos.")
+    if not email_digitado or not senha_digitada:
+        messagebox.showwarning("Atenção", "Por favor, preencha todos os campos!")
+        return
+
+    try:
+        # abre o arquivo pra leitura
+        with open("usuarios.txt", "r") as arquivo:
+            linhas = arquivo.readlines()
+        
+        autenticado = False
+        for linha in linhas:
+            dados = linha.strip().split(",")
+            if len(dados) == 2:
+                email_salvo, senha_salva = dados
+                if email_digitado == email_salvo and senha_digitada == senha_salva:
+                    autenticado = True
+                    break
+        
+        if autenticado:
+            messagebox.showinfo("Sucesso", "Login realizado com sucesso!")
+        else:
+            messagebox.showerror("Erro", "E-mail ou senha incorretos.")
+            
+    except FileNotFoundError:
+        messagebox.showwarning("Aviso", "Nenhum usuário cadastrado no sistema.")
 
 #configuracao da janela principal
 root = tk.Tk()
@@ -28,7 +49,7 @@ entry_senha = tk.Entry(root, width=50, show="*")
 entry_senha.pack(pady=5)
 
 #botao de login
-btn_login = tk.Button(root, text="Entrar", command=validar_login, bg="lightblue", fg="gray")
+btn_login = tk.Button(root, text="Entrar", command=validar_login, bg="navy", fg="white")
 btn_login.pack(pady=20)
 
 root.mainloop()
