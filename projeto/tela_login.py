@@ -3,13 +3,30 @@ from tkinter import messagebox
 
 #metodo de validacao do login
 def validar_login():
-    email = entry_email.get()
-    senha = entry_senha.get()
+    email_digitado = entry_email.get()
+    senha_digitada = entry_senha.get()
     
-    if "@" in email and len(senha) >= 6:
-        messagebox.showinfo("Sucesso", "Login realizado com sucesso!")
-    else:
-        messagebox.showwarning("Erro", "E-mail ou senha inválidos.")
+    try:
+        # abre o arquivo pra leitura
+        with open("usuarios.txt", "r") as arquivo:
+            linhas = arquivo.readlines()
+        
+        autenticado = False
+        for linha in linhas:
+            dados = linha.strip().split(",")
+            if len(dados) == 2:
+                email_salvo, senha_salva = dados
+                if email_digitado == email_salvo and senha_digitada == senha_salva:
+                    autenticado = True
+                    break
+        
+        if autenticado:
+            messagebox.showinfo("Sucesso", "Login realizado com sucesso!")
+        else:
+            messagebox.showerror("Erro", "E-mail ou senha incorretos.")
+            
+    except FileNotFoundError:
+        messagebox.showwarning("Aviso", "Nenhum usuário cadastrado no sistema.")
 
 #configuracao da janela principal
 root = tk.Tk()
