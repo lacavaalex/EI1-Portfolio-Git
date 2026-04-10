@@ -3,9 +3,13 @@ from tkinter import messagebox
 
 #metodo de validacao do login
 def validar_login():
-    email_digitado = entry_email.get()
-    senha_digitada = entry_senha.get()
+    email_digitado = entry_email.get().strip()
+    senha_digitada = entry_senha.get().strip()
     
+    if not email_digitado or not senha_digitada:
+        messagebox.showwarning("Atenção", "Por favor, preencha todos os campos!")
+        return
+
     try:
         # abre o arquivo pra leitura
         with open("usuarios.txt", "r") as arquivo:
@@ -45,7 +49,7 @@ entry_senha = tk.Entry(root, width=50, show="*")
 entry_senha.pack(pady=5)
 
 #botao de login
-btn_login = tk.Button(root, text="Entrar", command=validar_login, bg="blue", fg="white")
+btn_login = tk.Button(root, text="Entrar", command=validar_login, bg="navy", fg="white")
 btn_login.pack(pady=20)
 
 root.mainloop()
