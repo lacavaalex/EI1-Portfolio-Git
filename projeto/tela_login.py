@@ -28,7 +28,7 @@ entry_senha = tk.Entry(root, width=50, show="*")
 entry_senha.pack(pady=5)
 
 #botao de login
-btn_login = tk.Button(root, text="Entrar", command=validar_login, bg="blue", fg="white")
+btn_login = tk.Button(root, text="Entrar", command=validar_login, bg="lightblue", fg="gray")
 btn_login.pack(pady=20)
 
 root.mainloop()
